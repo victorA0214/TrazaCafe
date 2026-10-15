@@ -20,8 +20,9 @@ public class Muestra {
     private String procesoBeneficio;
     private String cantidadProducida;
     private String estado;
-    ResultadoSensorial resultadoSensorial;
-    ResultadoFisico resultadoFisico;
+    private Finca finca;
+    private ResultadoSensorial resultadoSensorial;
+    private ResultadoFisico resultadoFisico;
 
     public void registrar() {
 
@@ -97,5 +98,29 @@ public class Muestra {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public Finca getFinca() {
+        return finca;
+    }
+
+    public void setFinca(Finca finca) {
+        this.finca = finca;
+    }
+
+    public ResultadoSensorial getResultadoSensorial() {
+        return resultadoSensorial;
+    }
+
+    public void setResultadoSensorial(ResultadoSensorial resultadoSensorial) {
+        this.resultadoSensorial = resultadoSensorial;
+    }
+
+    public ResultadoFisico getResultadoFisico() {
+        return resultadoFisico;
+    }
+
+    public void setResultadoFisico(ResultadoFisico resultadoFisico) {
+        this.resultadoFisico = resultadoFisico;
     }
 }

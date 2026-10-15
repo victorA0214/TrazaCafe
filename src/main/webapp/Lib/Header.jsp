@@ -1,15 +1,9 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-        <%-- ESTILOS PERSONALIZADOS --%>
-        <link href="./Styles/Style.css" rel="stylesheet" type=text/css>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Trazacafé</title><link rel="icon" type="image/png" href="<%=request.getContextPath()%>/Images/logo_emblema.png"><link rel="stylesheet" href="<%=request.getContextPath()%>/Styles/Styles.css"></head><body>
+        <header class="topbar"><a class="brand" href="<%=request.getContextPath()%>/index.jsp"><img src="<%=request.getContextPath()%>/Images/logo_emblema.png" alt="Logo de Trazacafé"><span>Trazacafé<small>Trazabilidad del café nariñense</small></span></a>
+            <nav><a href="<%=request.getContextPath()%>/PanelGeneral.jsp">Panel</a><a href="<%=request.getContextPath()%>/ServletFinca">Fincas</a><a href="<%=request.getContextPath()%>/Registrar_EditarFincas.jsp">Registrar finca</a><a href="<%=request.getContextPath()%>/ServletMuestra">Muestras</a><a href="<%=request.getContextPath()%>/ServletAnalisis?tipo=fisico">Análisis físico</a><a href="<%=request.getContextPath()%>/ServletAnalisis?tipo=sensorial">Catación</a><a href="<%=request.getContextPath()%>/ServletReporte">Reportes</a><% if ("Administrador".equals(session.getAttribute("rol"))) {%><a href="<%=request.getContextPath()%>/ServletAdministracion">Administrar usuarios</a><% } %></nav>
+            <div class="user-area"><% if (session.getAttribute("usuario") != null) {%><span>Hola, <%=String.valueOf(session.getAttribute("usuario")).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")%></span><form class="inline" action="<%=request.getContextPath()%>/ServletUsuario" method="post"><input type="hidden" name="accion" value="logout"><button class="link-button" type="submit">Salir</button></form><%} else {%><a class="button small" href="<%=request.getContextPath()%>/IniciarSesion.jsp">Ingresar</a><%}%></div></header><main class="container">
+            <% String mt = (String) session.getAttribute("mensajeTipo"), msg = (String) session.getAttribute("mensaje");
+    if (msg != null) {%><div class="alert <%= "ok".equals(mt) ? "success" : "error"%>"><%=msg.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")%></div><%session.removeAttribute("mensaje");
+        session.removeAttribute("mensajeTipo");
+    }%>

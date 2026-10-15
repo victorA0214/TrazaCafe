@@ -1,2 +1,5 @@
-<label>Notas de perfil de taza</label>
-<textarea></textarea>
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@include file="Lib/Header.jsp"%><section class="page-heading"><p class="eyebrow">PERFIL DE TAZA</p><h1>Evaluación sensorial</h1><p>Conserva el puntaje de catación y las notas de quien evalúa.</p></section><form action="<%=request.getContextPath()%>/ServletAnalisis" method="post" class="panel form-grid"><input type="hidden" name="tipo" value="sensorial"><label>Muestra<select name="idMuestra" required><option value="">Selecciona una muestra</option><% java.util.List<Modelo.Muestra> muestras = (java.util.List<Modelo.Muestra>) request.getAttribute("muestras");
+    if (muestras != null) {
+        for (Modelo.Muestra m : muestras) {%><option value="<%=m.getIdMuestra()%>"><%=m.getLote()%> — <%=m.getVariedad()%> (ID <%=m.getIdMuestra()%>)</option><%}
+    }%></select></label><label>Puntaje de catación (0–100)<input type="number" name="puntajeCatacion" min="0" max="100" step="0.1" required></label><label class="span-2">Notas del perfil de taza<textarea name="notasPerfilTaza" rows="4" maxlength="2000" placeholder="Aroma, acidez, cuerpo, dulzor, sabores..." required></textarea></label><label class="span-2">Observaciones<textarea name="observaciones" rows="3" maxlength="2000"></textarea></label><div class="form-actions"><button class="button" type="submit">Guardar evaluación</button></div></form><%@include file="Lib/Footer.jsp"%>

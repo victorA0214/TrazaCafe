@@ -75,4 +75,3 @@ public class Reporte {
         this.estado = estado;
     }
 }
-

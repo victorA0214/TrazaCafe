@@ -1,6 +1,7 @@
-<body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f3f6f2;
-    color: #26352c;
-}
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@include file="Lib/Header.jsp"%><section class="page-heading row-between"><div><p class="eyebrow">TRAZABILIDAD</p><h1>Reportes de muestras</h1><p>Vista consolidada de muestras y resultados registrados.</p></div><a class="button secondary" href="<%=request.getContextPath()%>/ServletReporte">Actualizar</a></section><div class="table-wrap"><table><thead><tr><th>Lote</th><th>Finca</th><th>Variedad</th><th>Recolección</th><th>Estado</th><th>Humedad</th><th>Defectos</th><th>Catación</th><th>Perfil de taza</th></tr></thead><tbody><% java.util.List<Modelo.Muestra> muestras = (java.util.List<Modelo.Muestra>) request.getAttribute("muestras");
+    if (muestras != null && !muestras.isEmpty()) {
+        for (Modelo.Muestra x : muestras) {
+            Modelo.ResultadoFisico rf = x.getResultadoFisico();
+            Modelo.ResultadoSensorial rs = x.getResultadoSensorial();%><tr><td><%=x.getLote()%></td><td><%=x.getFinca().getNombre()%></td><td><%=x.getVariedad()%></td><td><%=x.getFechaRecoleccion()%></td><td><%=x.getEstado()%></td><td><%=rf != null ? String.valueOf(rf.getHumedadFinal()) : "—"%></td><td><%=rf != null ? String.valueOf(rf.getPorcentajeDefectos()) : "—"%></td><td><%=rs != null ? String.valueOf(rs.getPuntajeCatacion()) : "—"%></td><td><%=rs != null ? rs.getNotasPerfilTaza() : "—"%></td></tr><%}
+} else {%><tr><td colspan="9" class="empty">No hay muestras registradas o no se ha cargado el reporte.</td></tr><%}%></tbody></table></div><%@include file="Lib/Footer.jsp"%>

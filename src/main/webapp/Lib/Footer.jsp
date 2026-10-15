@@ -1,4 +1,1 @@
-<footer>
-    <p> Todos los derechos reservados autor VictorHernandez </p>
-</footer>
-</html>
+</main><footer class="footer">© 2026 Trazacafé · Tecnología para valorar el café de Nariño.</footer></body></html>

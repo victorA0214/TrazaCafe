@@ -9,6 +9,7 @@ package Modelo;
  * @author Victor
  */
 public class Finca {
+
     private int idFinca;
     private String nombre;
     private String municipio;
@@ -17,19 +18,22 @@ public class Finca {
     private double areaCultivada;
     private String variedadPredominante;
     private boolean estado;
-    Productor productor;
-    
-    public void registrar(){
-        
+    Usuario productor;
+
+    public void registrar() {
+
     }
-    public void actualizar (){
-        
+
+    public void actualizar() {
+
     }
-    public void eliminar(){
-        
+
+    public void eliminar() {
+
     }
-    public void fusionar(){
-        
+
+    public void fusionar() {
+
     }
 
     public int getIdFinca() {
@@ -96,12 +100,12 @@ public class Finca {
         this.estado = estado;
     }
 
-    public Productor getProductor() {
+    public Usuario getProductor() {
         return productor;
     }
 
-    public void setProductor(Productor productor) {
+    public void setProductor(Usuario productor) {
         this.productor = productor;
     }
-    
+
 }

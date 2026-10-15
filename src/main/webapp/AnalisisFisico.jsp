@@ -1,2 +1,5 @@
-<label>Humedad final (%)</label>
-<input type="number" step="0.1">
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@include file="Lib/Header.jsp"%><section class="page-heading"><p class="eyebrow">CONTROL DE CALIDAD</p><h1>Análisis físico</h1><p>Registra los indicadores físicos de una muestra.</p></section><form action="<%=request.getContextPath()%>/ServletAnalisis" method="post" class="panel form-grid"><input type="hidden" name="tipo" value="fisico"><label>Muestra<select name="idMuestra" required><option value="">Selecciona una muestra</option><% java.util.List<Modelo.Muestra> muestras = (java.util.List<Modelo.Muestra>) request.getAttribute("muestras");
+    if (muestras != null) {
+        for (Modelo.Muestra m : muestras) {%><option value="<%=m.getIdMuestra()%>"><%=m.getLote()%> — <%=m.getVariedad()%> (ID <%=m.getIdMuestra()%>)</option><%}
+    }%></select></label><label>Humedad final (%)<input type="number" name="humedadFinal" min="0" max="100" step="0.01" required></label><label>Porcentaje de defectos (%)<input type="number" name="porcentajeDefectos" min="0" max="100" step="0.01" required></label><label>Rendimiento de trilla (%)<input type="number" name="rendimientoTrilla" min="0" max="100" step="0.01" required></label><div class="form-actions"><button class="button" type="submit">Guardar análisis físico</button></div></form><%@include file="Lib/Footer.jsp"%>

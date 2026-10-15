@@ -1,16 +1,5 @@
-<table>
-  <thead>
-    <tr>
-      <th>Finca</th>
-      <th>Productor</th>
-      <th>Municipio</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>La Esperanza</td>
-      <td>Juan P�rez</td>
-      <td>Pasto</td>
-    </tr>
-  </tbody>
-</table>
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@include file="Lib/Header.jsp"%><section class="page-heading row-between"><div><p class="eyebrow">ORIGEN DEL CAFÉ</p><h1>Fincas registradas</h1><p>Listado de fincas registradas.</p></div><a class="button" href="Registrar_EditarFincas.jsp">＋ Nueva finca</a></section><div class="table-wrap"><table><thead><tr><th>Finca</th><th>Productor</th><th>Municipio</th><th>Vereda</th><th>Altitud</th><th>Área (ha)</th><th>Variedad</th><th>Acción</th></tr></thead><tbody><% java.util.List<Modelo.Finca> fincas = (java.util.List<Modelo.Finca>) request.getAttribute("fincas");
+    if (fincas != null && !fincas.isEmpty()) {
+        for (Modelo.Finca f : fincas) {%><tr><td><%=f.getNombre()%></td><td><%=f.getProductor() != null ? f.getProductor().getNombre() : ""%></td><td><%=f.getMunicipio()%></td><td><%=f.getVereda()%></td><td><%=f.getAltitud()%> m</td><td><%=f.getAreaCultivada()%></td><td><%=f.getVariedadPredominante()%></td><td><form action="<%=request.getContextPath()%>/ServletFinca" method="post" onsubmit="return confirm('¿Desactivar esta finca?')"><input type="hidden" name="accion" value="eliminar"><input type="hidden" name="idFinca" value="<%=f.getIdFinca()%>"><button class="button danger small" type="submit">Desactivar</button></form></td></tr><%}
+} else {%><tr><td colspan="8" class="empty">No hay fincas para mostrar. Registra la primera finca.</td></tr><%}%></tbody></table></div><%@include file="Lib/Footer.jsp"%>

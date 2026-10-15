@@ -1,10 +1,2 @@
-<form> onsubmit="event.preventDefault();
-    location.href='inicio.html'"
-<label>Correo electronico</label>
-<input type='email' required>
-
-<label>Contrase�a</label>
-<input type="contrase�a" requiered>
-
-<button type="submit"> Ingresar </button>
-</form>
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@include file="Lib/Header.jsp"%><section class="auth-card"><img class="auth-logo" src="<%=request.getContextPath()%>/Images/logo_completo.png" alt="Trazacafé"><p class="eyebrow">BIENVENIDO DE NUEVO</p><h1>Iniciar sesión</h1><p>Ingresa con las credenciales registradas en Trazacafé.</p><form action="<%=request.getContextPath()%>/ServletUsuario" method="post" class="form-grid"><input type="hidden" name="accion" value="login"><label>Correo electrónico<input type="email" name="correo" autocomplete="username" required maxlength="150"></label><label>Contraseña<input type="password" name="contrasena" autocomplete="current-password" required></label><button class="button full" type="submit">Ingresar</button></form><p class="muted">¿Primera vez? Solicita al administrador que registre tu usuario.</p></section><%@include file="Lib/Footer.jsp"%>
